@@ -1,0 +1,64 @@
+/*************************************************
+              -- COLOR SETTINGS --
+feel free to configure using color variable names
+*************************************************/
+@use "../settings.scss" as *;
+
+$export: (
+  "is-grayscale": false,
+  "theme-colors": (
+    // LAYOUT:
+    "canvas-background": $color-yellow,
+    "canvas-trippy-layer": $color-black,
+    "footer-text-color": $color-black,
+    "footer-text-color-fullPageViewMode": $color-yellow,
+
+    // ELEMENTS:
+    "logo-desktop": $color-yellow,
+    "logo-mobile": $color-yellow,
+    "logo-mobile-fullPageViewMode": $color-yellow,
+    "link-general": $color-orange,
+    "link-email": $color-orange,
+    "link-enhancerIcon": $color-orange,
+    "mobileMenuToggler": $color-yellow,
+    "mobileMenuToggler-fullPageViewMode": $color-yellow,
+    "mobileMenu-background": $color-black,
+    "mobileMenu-background-fullPageViewMode": $color-blue,
+    "dropdown-background-desktop": $color-black,
+    "dropdown-background-desktop-fullPageViewMode": $color-yellow,
+    "dropdown-border-desktop": $color-yellow,
+    "dropdown-border-desktop-fullPageViewMode": $color-orange,
+    "dropdown-link-desktop": $color-yellow,
+    "dropdown-link-desktop-fullPageViewMode": $color-blue,
+    "dropdown-link-desktop-hover": $color-orange,
+    "dropdown-link-desktop-hover-fullPageViewMode": $color-orange,
+    "dropdown-link-mobile": $color-yellow,
+    "dropdown-link-mobile-fullPageViewMode": $color-yellow,
+    "dropdown-link-mobile-hover": $color-orange,
+    "dropdown-link-mobile-hover-fullPageViewMode": $color-orange,
+    "menuItem-desktop-normal": $color-black,
+    "menuItem-desktop-normal-fullPageViewMode": $color-yellow,
+    "menuItem-desktop-alternative": $color-orange,
+    "menuItem-desktop-alternative-fullPageViewMode": $color-orange,
+    "menuItem-mobile-normal": $color-yellow,
+    "menuItem-mobile-normal-fullPageViewMode": $color-yellow,
+    "menuItem-mobile-alternative": $color-orange,
+    "menuItem-mobile-alternative-fullPageViewMode": $color-orange,
+
+    // SHAPES:
+    "cloud": $color-blue,
+    "teardrop": $color-blue,
+    "dagger-top": $color-black,
+    "dagger-left": $color-white,
+    "dagger-right": $color-orange,
+    "eye-white-outermost": $color-yellow,
+    "eye-white-middle-vertical": $color-yellow,
+    "eye-white-middle-horizontal": $color-yellow,
+    "eye-ball-outermost-normal": $color-orange,
+    "eye-ball-outermost-tripping": $color-orange,
+    "eye-ball-middle-outer": $color-blue,
+    "eye-ball-middle-inner": $color-black,
+    "eye-ball-innermost": $color-orange,
+    "star": $color-black,
+  ),
+);

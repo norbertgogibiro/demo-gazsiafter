@@ -1,0 +1,161 @@
+@use "../../../../../styles/settings" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/functions" as *;
+
+$-speed-shape-transformation: $speed-ui-general-normal;
+$-size-bar-width: 2em;
+$-size-bar-thickness: 2px;
+$-size-button-padding: 0.5em;
+$-size-scale-menuCloser: 0.8;
+$-amount-rotation: 45deg;
+
+.main {
+  button {
+    padding: $-size-button-padding;
+    border: none;
+
+    .mobileMenuBar {
+      position: relative;
+      width: $-size-bar-width;
+      height: $-size-bar-thickness;
+      transition: $speed-ui-general-normal;
+
+      // Breaking the bar into 2 parts for being able to set
+      // pivots to their corners:
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 50%;
+        height: 100%;
+      }
+
+      // Pulling the first half to the left:
+      &:before {
+        left: 0;
+      }
+
+      // Pulling the second half to the right:
+      &:after {
+        right: 0;
+      }
+
+      // Layering the bars on each other instead of
+      // putting them under each other:
+      &:not(:first-of-type) {
+        margin-top: $-size-bar-thickness * -1;
+      }
+
+      // Adding some space between the bars:
+      &:not(:last-of-type) {
+        margin-bottom: $-size-button-padding;
+      }
+
+      // Adding pivots for the top bar's broken parts:
+      &:nth-of-type(1) {
+        &:before {
+          transform-origin: top left;
+        }
+        &:after {
+          transform-origin: top right;
+        }
+      }
+
+      // Adding pivots for the bottom bar's broken parts:
+      &:nth-of-type(3) {
+        &:before {
+          left: 0;
+          transform-origin: bottom left;
+        }
+        &:after {
+          right: 0;
+          transform-origin: bottom right;
+        }
+      }
+    }
+  }
+
+  &.isMobileMenuOpen {
+    // Shrinking the closer button a little:
+    transform: scale($-size-scale-menuCloser);
+
+    .mobileMenuBar {
+      // Adjusting the length of the bar to make them meet
+      // in the middle when the broken parts get rotated:
+      &:before,
+      &:after {
+        width: 74%;
+      }
+
+      &:nth-of-type(1) {
+        // Pulling the top bar up so the inner ends of its broken parts
+        // would meet in the middle with the ends of the bottom bar's
+        // broken parts:
+        transform: translateY(#{$-size-button-padding * -1});
+
+        // Rotating the broken parts opposite to each other:
+        &:before {
+          transform: rotate(#{$-amount-rotation});
+        }
+        &:after {
+          transform: rotate(#{$-amount-rotation * -1});
+        }
+      }
+
+      &:nth-of-type(2) {
+        // Making the middle bar shrink to nothing:
+        transform: scaleX(0);
+      }
+
+      &:nth-of-type(3) {
+        // Pulling the bottom bar up so the inner ends of its broken
+        // parts would meet in the middle with the ends of the top
+        // bar's broken parts:
+        transform: translateY(#{$-size-button-padding});
+
+        // Rotating the broken parts opposite to each other:
+        &:before {
+          transform: rotate(#{$-amount-rotation * -1});
+        }
+        &:after {
+          transform: rotate(#{$-amount-rotation});
+        }
+      }
+    }
+  }
+
+  @include screens-bigger-than($breakpoint-mobile-menu) {
+    display: none;
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      .mobileMenuBar {
+        &:before,
+        &:after {
+          background: get-color($theme-name, "mobileMenuToggler");
+        }
+      }
+
+      &.isFullPageViewMode {
+        .mobileMenuBar {
+          transition: $-speed-shape-transformation;
+
+          &:before,
+          &:after {
+            background: get-color(
+              $theme-name,
+              "mobileMenuToggler-fullPageViewMode"
+            );
+
+            transition: background
+              $-speed-shape-transformation
+              $speed-ui-animationDelay-slowGrowingStarOverlays;
+          }
+        }
+      }
+    }
+  }
+}

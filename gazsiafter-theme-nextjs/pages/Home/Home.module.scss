@@ -1,0 +1,42 @@
+@use "../../styles/settings" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.layoutPositioner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: filter $speed-ui-general-normal,
+    transform $speed-ui-general-normal;
+
+  &.isMobileMenuOpen {
+    @include screens-smaller-than($breakpoint-mobile-menu) {
+      transform: translateX(#{$size-mobile-sidebar-width-portrait * -1});
+
+      @include screen-orientation(landscape) {
+        transform: translateX(#{$size-mobile-sidebar-width-landscape * -1});
+      }
+    }
+  }
+
+  .main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: opacity $speed-theme-initialization ease-in-out;
+
+    &.noTheme {
+      opacity: 0;
+    }
+
+    @each $grayscale-theme-name in get-grayscale-theme-names() {
+      &.#{$grayscale-theme-name} {
+        filter: grayscale(1);
+      }
+    }
+  }
+}

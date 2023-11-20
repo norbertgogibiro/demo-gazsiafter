@@ -1,0 +1,49 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/functions" as *;
+
+$-size-enhancerIcon: $size-letter-small;
+$-name-iconClass: "linkEnhancerStar";
+
+.main {
+  position: relative;
+
+  &,
+  &:active,
+  &:visited {
+    transition: color $speed-ui-general-normal;
+  }
+
+  &:focus,
+  &:hover {
+    outline: none;
+    text-decoration: none;
+
+    .#{$-name-iconClass} {
+      transform: scale(1.1) rotate(unquote((360 / 5) / 2 + "deg"));
+      opacity: 1;
+    }
+  }
+
+  .#{$-name-iconClass} {
+    position: absolute;
+    top: $-size-enhancerIcon / 3;
+    height: $-size-enhancerIcon;
+    transition: $speed-ui-general-normal;
+    opacity: 0.8;
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      &,
+      &:active,
+      &:visited {
+        color: get-color($theme-name, "link-general");
+
+        .#{$-name-iconClass} {
+          color: get-color($theme-name, "link-enhancerIcon");
+        }
+      }
+    }
+  }
+}

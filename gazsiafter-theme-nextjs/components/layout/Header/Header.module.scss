@@ -1,0 +1,56 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/functions" as *;
+
+:export {
+  backgroundChangeDelayTime: $speed-ui-animationDelay-slowGrowingStarOverlays;
+}
+
+.main {
+  position: absolute;
+  top: $margin-screen-edge-vertical;
+  left: $margin-screen-edge-horizontal;
+  right: $margin-screen-edge-horizontal;
+  padding: $size-margin-header;
+  font-size: 18px;
+  box-sizing: border-box;
+  z-index: $level-layer-high;
+
+  .mobileMenuToggler {
+    position: absolute;
+    top: $margin-screen-edge-horizontal;
+    right: calc(100% + #{$margin-screen-edge-horizontal});
+  }
+
+  @include screens-smaller-than($breakpoint-mobile-menu) {
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    width: $size-mobile-sidebar-width-portrait;
+    padding: 0.5em;
+    transition: background-color $speed-ui-general-normal;
+
+    @include screen-orientation(landscape) {
+      width: $size-mobile-sidebar-width-landscape;
+    }
+
+    &:before {
+      content: "";
+      @include background-glitch-layer("/images/texture_6.png");
+    }
+
+    // THEME-DEPENDENT COLORING:
+    @each $theme-name in get-theme-names() {
+      &.#{$theme-name} {
+        background: get-color($theme-name, "mobileMenu-background");
+
+        &.isFullPageViewMode {
+          background: get-color(
+            $theme-name,
+            "mobileMenu-background-fullPageViewMode"
+          );
+        }
+      }
+    }
+  }
+}

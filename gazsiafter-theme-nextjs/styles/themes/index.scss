@@ -1,0 +1,20 @@
+/*************************************************
+              -- THEME EXPORTS --
+only edit this file when you add or remove a theme
+*************************************************/
+
+@use './theme-orange' as themeOrange;
+@use './theme-yellow' as themeYellow;
+@use './theme-blue' as themeBlue;
+@use './theme-poison' as themePoison;
+@use './theme-dark' as themeDark;
+@use './theme-night' as themeNight;
+
+$theme-exports: (
+  "theme-orange": themeOrange.$export,
+  "theme-yellow": themeYellow.$export,
+  "theme-blue": themeBlue.$export,
+  "theme-poison": themePoison.$export,
+  "theme-dark": themeDark.$export,
+  "theme-night": themeNight.$export,
+);

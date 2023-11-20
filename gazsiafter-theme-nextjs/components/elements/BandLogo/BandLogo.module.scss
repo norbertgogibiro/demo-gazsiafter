@@ -1,0 +1,43 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/functions" as *;
+@use "../../../styles/mixins" as *;
+
+.main {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 7em;
+  height: 7em;
+  z-index: $level-layer-top - 1;
+
+  &:focus {
+    transform: scale($size-scale-focus);
+  }
+
+  @include screens-smaller-than($breakpoint-mobile-menu) {
+    width: 5em;
+    height: 5em;
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      path {
+        fill: get-color($theme-name, "logo-desktop");
+      }
+
+      &.isFullPageViewMode {
+        path {
+          fill: get-color($theme-name, "logo-mobile-fullPageViewMode");
+          transition: fill $speed-ui-general-normal;
+        }
+      }
+
+      @include screens-smaller-than($breakpoint-mobile-menu) {
+        path {
+          fill: get-color($theme-name, "logo-mobile");
+        }
+      }
+    }
+  }
+}

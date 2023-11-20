@@ -1,0 +1,8 @@
+
+.DS_Store
+
+node_modules/
+
+old/
+
+gazsiafter-theme-nextjs/yarn.lock

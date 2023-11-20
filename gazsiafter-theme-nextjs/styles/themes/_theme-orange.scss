@@ -1,0 +1,64 @@
+/*************************************************
+              -- COLOR SETTINGS --
+feel free to configure using color variable names
+*************************************************/
+@use "../settings.scss" as *;
+
+$export: (
+  "is-grayscale": false,
+  "theme-colors": (
+    // LAYOUT:
+    "canvas-background": $color-orange,
+    "canvas-trippy-layer": $color-black,
+    "footer-text-color": $color-black,
+    "footer-text-color-fullPageViewMode": $color-white,
+
+    // ELEMENTS:
+    "logo-desktop": $color-black,
+    "logo-mobile": $color-black,
+    "logo-mobile-fullPageViewMode": $color-yellow,
+    "link-general": $color-yellow,
+    "link-email": $color-orange,
+    "link-enhancerIcon": $color-orange,
+    "mobileMenuToggler": $color-black,
+    "mobileMenuToggler-fullPageViewMode": $color-yellow,
+    "mobileMenu-background": $color-black,
+    "mobileMenu-background-fullPageViewMode": $color-orange,
+    "dropdown-background-desktop": $color-black,
+    "dropdown-background-desktop-fullPageViewMode": $color-yellow,
+    "dropdown-border-desktop": $color-yellow,
+    "dropdown-border-desktop-fullPageViewMode": $color-orange,
+    "dropdown-link-desktop": $color-yellow,
+    "dropdown-link-desktop-fullPageViewMode": $color-black,
+    "dropdown-link-desktop-hover": $color-orange,
+    "dropdown-link-desktop-hover-fullPageViewMode": $color-orange,
+    "dropdown-link-mobile": $color-yellow,
+    "dropdown-link-mobile-fullPageViewMode": $color-black,
+    "dropdown-link-mobile-hover": $color-yellow,
+    "dropdown-link-mobile-hover-fullPageViewMode": $color-black,
+    "menuItem-desktop-normal": $color-black,
+    "menuItem-desktop-normal-fullPageViewMode": $color-orange,
+    "menuItem-desktop-alternative": $color-yellow,
+    "menuItem-desktop-alternative-fullPageViewMode": $color-yellow,
+    "menuItem-mobile-normal": $color-orange,
+    "menuItem-mobile-normal-fullPageViewMode": $color-yellow,
+    "menuItem-mobile-alternative": $color-yellow,
+    "menuItem-mobile-alternative-fullPageViewMode": $color-black,
+
+    // SHAPES:
+    "cloud": $color-yellow,
+    "teardrop": $color-blue,
+    "dagger-top": $color-black,
+    "dagger-left": $color-yellow,
+    "dagger-right": $color-blue,
+    "eye-white-outermost": $color-yellow,
+    "eye-white-middle-vertical": $color-yellow,
+    "eye-white-middle-horizontal": $color-yellow,
+    "eye-ball-outermost-normal": $color-blue,
+    "eye-ball-outermost-tripping": $color-blue,
+    "eye-ball-middle-outer": $color-orange,
+    "eye-ball-middle-inner": $color-black,
+    "eye-ball-innermost": $color-orange,
+    "star": $color-black,
+  ),
+);

@@ -1,0 +1,34 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/functions" as *;
+
+.main {
+  &,
+  &:active,
+  &:visited {
+    color: $color-orange;
+  }
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:before {
+    content: attr(data-user) "@";
+  }
+
+  &:after {
+    content: attr(data-domain) "." attr(data-tld);
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      &,
+      &:active,
+      &:visited {
+        color: get-color($theme-name, "link-email");
+      }
+    }
+  }
+}

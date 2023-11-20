@@ -1,0 +1,34 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/functions" as *;
+
+.main {
+  position: absolute;
+  bottom: $margin-screen-edge-vertical;
+  width: 100%;
+  text-align: right;
+  z-index: $level-layer-middle;
+
+  small {
+    display: inline-block;
+    max-width: 25em;
+    padding: 0 $margin-screen-edge-horizontal;
+    font-size: $size-letter-small;
+
+    @include screens-smaller-than(md) {
+      font-size: $size-letter-smallest;
+    }
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      color: get-color($theme-name, "footer-text-color");
+
+      &.isFullPageViewMode {
+        transition: color $speed-ui-general-normal;
+        color: get-color($theme-name, "footer-text-color-fullPageViewMode");
+      }
+    }
+  }
+}

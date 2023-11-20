@@ -1,0 +1,27 @@
+.main {
+  width: 100%;
+  height: 100%;
+
+  .streamingServicesList {
+    display: grid;
+    width: 55%;
+    margin: auto;
+    grid-template-rows: 40% 40%;
+    grid-template-columns: 43% 43%;
+    grid-gap: 20% 14%;
+
+    li {
+      height: 100%;
+
+      .streamingServiceLogo {
+        height: 100%;
+        margin-bottom: 0.25em;
+
+        svg {
+          width: 50%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

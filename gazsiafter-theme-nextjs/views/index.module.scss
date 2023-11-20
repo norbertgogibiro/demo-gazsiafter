@@ -1,0 +1,28 @@
+@use "../styles/settings" as *;
+
+$-max-width: 380px;
+
+.main {
+  display: flex;
+  width: 100vw;
+  max-width: $-max-width;
+  height: 100%;
+  margin: auto;
+  padding: $size-letter-big;
+  align-items: center;
+  justify-content: center;
+  color: $color-white;
+  text-align: center;
+  box-sizing: border-box;
+
+  &.isFullPageViewMode {
+    max-width: $size-pageContent-maxWidth;
+    padding: 60px;
+    opacity: 0;
+    transition: opacity $speed-ui-general-normal;
+  }
+
+  &.isStarBigEnough {
+    opacity: 1;
+  }
+}

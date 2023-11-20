@@ -1,0 +1,61 @@
+// COLORS:
+$color-white: #eeeeee;
+$color-yellow: #f3ecd9;
+$color-black: #241f21;
+$color-orange: #f67144;
+$color-blue: #2643b3;
+
+// FONTS:
+@font-face {
+  font-family: BourtonBase;
+  src: url("/fonts/Bourton-Base.ttf");
+}
+
+// TIMING:
+$speed-theme-initialization: 0.5s;
+$speed-cloud-pulsingTransition: 5s;
+$speed-star-slowGrowth: 2.5s;
+$speed-star-pulsingTransition: 3.4s;
+$speed-star-squaringTransition: 0.375s;
+$speed-eye-blink: 0.2s;
+$speed-teardrop-fall: 1s;
+$speed-ui-general-fast: 0.1s;
+$speed-ui-general-normal: 0.2s;
+$speed-ui-animationDelay-slowGrowingStarOverlays: $speed-star-slowGrowth / 3;
+
+// SIZES:
+$size-letter-normal: 15px;
+$size-letter-big: $size-letter-normal * 1.4;
+$size-letter-small: $size-letter-normal * 0.7;
+$size-letter-smallest: $size-letter-normal * 0.5;
+$size-pageContent-maxWidth: 1050px;
+$size-margin-header: 45px;
+$size-scale-focus: 1.05;
+$size-scale-mobile-star: 0.8;
+$size-mobile-sidebar-width-portrait: 50%;
+$size-mobile-sidebar-width-landscape: 25%;
+
+// SPACING:
+$margin-eye-hoverArea: 3rem;
+$margin-screen-edge-horizontal: 1rem;
+$margin-screen-edge-vertical: 0;
+$width-border-line: 3px;
+$positionTop-mainActor-portrait: 35%;
+
+// Z-INDEX LEVELS:
+$level-layer-top: 100;
+$level-layer-high: 75;
+$level-layer-middle: 50;
+$level-layer-low: 25;
+$level-layer-bottom: 0;
+
+// BREAKPOINTS:
+$breakpoints: (
+  xs: 300px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+$breakpoint-mobile-menu: lg;

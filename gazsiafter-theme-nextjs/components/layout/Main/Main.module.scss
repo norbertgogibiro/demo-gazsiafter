@@ -1,0 +1,73 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/functions" as *;
+@use "../../../styles/mixins" as *;
+
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $level-layer-middle;
+}
+
+.canvas {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: $level-layer-bottom;
+  transition: background-color $speed-ui-general-normal;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    z-index: $level-layer-bottom;
+    transition: opacity $speed-cloud-pulsingTransition;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.5;
+    background-position: center;
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    $-background-color: get-color($theme-name, "canvas-background");
+
+    &.#{$theme-name} {
+      background: $-background-color;
+
+      &:after {
+        @if $-background-color == $color-black {
+          background: url("/images/textura_dryink.png");
+        } @else {
+          background: url("/images/texture_6.png");
+        }
+      }
+
+      &.isEyeTripping {
+        &:before {
+          background: get-color($theme-name, "canvas-trippy-layer");
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+.layerPattern {
+  z-index: $level-layer-middle;
+  @include background-glitch-layer("/images/texture_6.png");
+}

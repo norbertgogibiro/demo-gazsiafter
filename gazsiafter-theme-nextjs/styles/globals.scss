@@ -1,0 +1,51 @@
+@use "./settings" as *;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: BourtonBase;
+  font-size: $size-letter-normal;
+  background: $color-black;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+dl {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5em;
+  font-size: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
+  border-top: $width-border-line solid transparent;
+  border-bottom: $width-border-line solid transparent;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+small {
+  p {
+    margin: 0.5em 0;
+  }
+}

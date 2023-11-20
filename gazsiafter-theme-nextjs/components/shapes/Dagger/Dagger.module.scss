@@ -1,0 +1,62 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/functions" as *;
+@use "../../../styles/mixins" as *;
+
+$-fill-size: 200px;
+$-speed-slide: $speed-star-squaringTransition * 1.25;
+
+.wrapper {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+  width: 100%;
+  height: 150%;
+  transform: translate(-50%, 0%);
+  transition: transform $-speed-slide;
+  overflow: hidden;
+
+  &.isHidden {
+    transform: translate(-50%, -50%);
+
+    .main {
+      top: -100%;
+    }
+  }
+
+  .main {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: top $-speed-slide;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+
+    &:after {
+      content: "";
+      @include background-glitch-layer("/images/texture_6.png");
+    }
+
+    .fill {
+      width: 0;
+      height: 0;
+      margin-left: 50%;
+      transform: translate(-50%, 21%) rotate(-45deg);
+      border-width: $-fill-size;
+      border-style: solid;
+    }
+
+    // THEME-DEPENDENT COLORING:
+    @each $theme-name in get-theme-names() {
+      &.#{$theme-name} {
+        background: get-color($theme-name, "dagger-top");
+
+        .fill {
+          border-left-color: get-color($theme-name, "dagger-left");
+          border-top-color: get-color($theme-name, "dagger-left");
+          border-right-color: get-color($theme-name, "dagger-right");
+          border-bottom-color: get-color($theme-name, "dagger-right");
+        }
+      }
+    }
+  }
+}

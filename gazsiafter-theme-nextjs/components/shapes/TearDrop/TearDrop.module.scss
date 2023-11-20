@@ -1,0 +1,49 @@
+@use "../../../styles/functions" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/settings" as *;
+
+:export {
+  tearDropFallTime: $speed-teardrop-fall;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $level-layer-middle;
+
+  &.isViewShown {
+    z-index: $level-layer-low + 1;
+  }
+}
+
+.shape {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.29);
+  animation: drop-fall $speed-teardrop-fall ease-in 0s 1 normal forwards;
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      path {
+        fill: get-color($theme-name, "teardrop");
+      }
+    }
+  }
+}
+
+@keyframes drop-fall {
+  from {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.29);
+  }
+
+  to {
+    top: 170%;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}

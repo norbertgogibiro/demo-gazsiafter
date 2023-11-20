@@ -1,0 +1,278 @@
+@use "../../../../../styles/settings" as *;
+@use "../../../../../styles/mixins" as *;
+@use "../../../../../styles/functions" as *;
+
+:export {
+  colorChangeDelayTime: $speed-ui-animationDelay-slowGrowingStarOverlays;
+}
+
+.main {
+  @include screens-smaller-than($breakpoint-mobile-menu) {
+    height: 100%;
+    padding: 0.5em 0;
+  }
+
+  .navList {
+    display: flex;
+    width: 100%;
+    max-width: $size-pageContent-maxWidth;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: $size-letter-big;
+
+    @include screens-smaller-than($breakpoint-mobile-menu) {
+      display: block;
+      height: 100%;
+    }
+
+    & > li {
+      .menuItemContent {
+        display: block;
+        width: 100%;
+        padding: 0.5em;
+        border-top: unset;
+        border-left: unset;
+        border-right: unset;
+        border-bottom-width: $width-border-line;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        text-decoration: none;
+        transition: color $speed-ui-general-normal;
+
+        @include screens-smaller-than($breakpoint-mobile-menu) {
+          text-align: left;
+          border-bottom: 0;
+        }
+      }
+    }
+
+    .dropdownLink {
+      display: block;
+      width: 100%;
+      padding: 0.5em;
+      text-align: left;
+      white-space: nowrap;
+
+      @include screens-smaller-than($breakpoint-mobile-menu) {
+        padding: 0.25em 0.5em;
+        white-space: normal;
+      }
+
+      &,
+      &:active,
+      &:visited {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      .navList {
+        li {
+          .menuItemContent {
+            &.activeMenuItem {
+              transform: scale(1.1);
+              transition: $speed-ui-general-normal;
+
+              @include screens-smaller-than($breakpoint-mobile-menu) {
+                &:before {
+                  content: "test";
+                }
+              }
+            }
+          }
+
+          &:nth-child(odd) {
+            .menuItemContent {
+              color: get-color($theme-name, "menuItem-desktop-normal");
+
+              @include screens-smaller-than($breakpoint-mobile-menu) {
+                color: get-color($theme-name, "menuItem-mobile-normal");
+              }
+
+              &:focus,
+              &:hover {
+                border-color: get-color(
+                  $theme-name,
+                  "menuItem-desktop-alternative"
+                );
+
+                @include screens-smaller-than($breakpoint-mobile-menu) {
+                  border-color: get-color(
+                    $theme-name,
+                    "menuItem-mobile-alternative"
+                  );
+                }
+              }
+            }
+          }
+
+          &:nth-child(even) {
+            .menuItemContent {
+              color: get-color($theme-name, "menuItem-desktop-alternative");
+
+              @include screens-smaller-than($breakpoint-mobile-menu) {
+                color: get-color($theme-name, "menuItem-mobile-alternative");
+              }
+
+              &:focus,
+              &:hover {
+                border-color: get-color($theme-name, "menuItem-desktop-normal");
+
+                @include screens-smaller-than($breakpoint-mobile-menu) {
+                  border-color: get-color(
+                    $theme-name,
+                    "menuItem-mobile-normal"
+                  );
+                }
+              }
+            }
+          }
+        }
+
+        &.hasActiveLink {
+          li {
+            .menuItemContent {
+              &:not(.activeMenuItem) {
+                opacity: 0.5;
+              }
+
+              &:focus,
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        .dropdownLink {
+          &,
+          &:active,
+          &:visited {
+            color: get-color($theme-name, "dropdown-link-desktop");
+
+            @include screens-smaller-than($breakpoint-mobile-menu) {
+              color: get-color($theme-name, "dropdown-link-mobile");
+            }
+          }
+
+          &:focus,
+          &:hover {
+            color: get-color($theme-name, "dropdown-link-desktop-hover");
+
+            @include screens-smaller-than($breakpoint-mobile-menu) {
+              color: get-color($theme-name, "dropdown-link-mobile-hover");
+            }
+          }
+        }
+      }
+
+      &.isFullPageViewMode {
+        .navList {
+          li {
+            &:nth-child(odd) {
+              .menuItemContent {
+                color: get-color(
+                  $theme-name,
+                  "menuItem-desktop-normal-fullPageViewMode"
+                );
+
+                @include screens-smaller-than($breakpoint-mobile-menu) {
+                  color: get-color(
+                    $theme-name,
+                    "menuItem-mobile-normal-fullPageViewMode"
+                  );
+                }
+
+                &:focus,
+                &:hover {
+                  border-color: get-color(
+                    $theme-name,
+                    "menuItem-desktop-alternative-fullPageViewMode"
+                  );
+
+                  @include screens-smaller-than($breakpoint-mobile-menu) {
+                    &:focus,
+                    &:hover {
+                      border-color: get-color(
+                        $theme-name,
+                        "menuItem-mobile-alternative-fullPageViewMode"
+                      );
+                    }
+                  }
+                }
+              }
+            }
+
+            &:nth-child(even) {
+              .menuItemContent {
+                color: get-color(
+                  $theme-name,
+                  "menuItem-desktop-alternative-fullPageViewMode"
+                );
+
+                @include screens-smaller-than($breakpoint-mobile-menu) {
+                  color: get-color(
+                    $theme-name,
+                    "menuItem-mobile-alternative-fullPageViewMode"
+                  );
+                }
+
+                &:focus,
+                &:hover {
+                  border-color: get-color(
+                    $theme-name,
+                    "menuItem-desktop-normal-fullPageViewMode"
+                  );
+
+                  @include screens-smaller-than($breakpoint-mobile-menu) {
+                    border-color: get-color(
+                      $theme-name,
+                      "menuItem-mobile-normal-fullPageViewMode"
+                    );
+                  }
+                }
+              }
+            }
+          }
+
+          .dropdownLink {
+            &,
+            &:active,
+            &:visited {
+              color: get-color(
+                $theme-name,
+                "dropdown-link-desktop-fullPageViewMode"
+              );
+
+              @include screens-smaller-than($breakpoint-mobile-menu) {
+                color: get-color(
+                  $theme-name,
+                  "dropdown-link-mobile-fullPageViewMode"
+                );
+              }
+            }
+
+            &:focus,
+            &:hover {
+              color: get-color(
+                $theme-name,
+                "dropdown-link-desktop-hover-fullPageViewMode"
+              );
+
+              @include screens-smaller-than($breakpoint-mobile-menu) {
+                color: get-color(
+                  $theme-name,
+                  "dropdown-link-mobile-hover-fullPageViewMode"
+                );
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

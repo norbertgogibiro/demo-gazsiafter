@@ -1,0 +1,100 @@
+@use "../../../styles/settings" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/functions" as *;
+
+:export {
+  pulsingTransitionTime: $speed-cloud-pulsingTransition;
+}
+
+.main {
+  position: absolute;
+  transition: transform $speed-cloud-pulsingTransition;
+  z-index: $level-layer-low;
+
+  &:not(.isInverted) {
+    bottom: 0;
+    right: 100%;
+    transform-origin: bottom right;
+    transform: scaleX(-1) scale(0.75);
+
+    @include screens-smaller-than($breakpoint-mobile-menu) {
+      transform: rotate(90deg) scale(0.5);
+    }
+
+    @include screens-smaller-than(sm) {
+      transform: rotate(90deg) scale(0.4);
+    }
+
+    @include screens-smaller-than(xs) {
+      transform: rotate(90deg) scale(0.35);
+    }
+
+    &.isEyeTripping {
+      transform: scale(-1, 1);
+
+      @include screens-smaller-than($breakpoint-mobile-menu) {
+        transform: rotate(90deg) scale(0.75);
+      }
+
+      @include screens-smaller-than(sm) {
+        transform: rotate(90deg) scale(0.6);
+      }
+
+      @include screens-smaller-than(xs) {
+        transform: rotate(90deg) scale(0.5);
+      }
+    }
+  }
+
+  &.isInverted {
+    right: 0;
+    bottom: 100%;
+    transform-origin: bottom right;
+    transform: scaleY(-1) scale(0.75);
+
+    @include screens-smaller-than($breakpoint-mobile-menu) {
+      transform: rotate(270deg) scale(0.5);
+    }
+
+    @include screens-smaller-than(sm) {
+      transform: rotate(270deg) scale(0.4);
+    }
+
+    @include screens-smaller-than(xs) {
+      transform: rotate(270deg) scale(0.3);
+    }
+
+    &.isEyeTripping {
+      transform: scale(1, -1);
+
+      @include screens-smaller-than($breakpoint-mobile-menu) {
+        transform: rotate(270deg) scale(0.75);
+      }
+
+      @include screens-smaller-than(sm) {
+        transform: rotate(270deg) scale(0.6);
+      }
+
+      @include screens-smaller-than(xs) {
+        transform: rotate(270deg) scale(0.5);
+      }
+    }
+  }
+
+  .shape {
+    path {
+      transition: $speed-ui-general-normal;
+    }
+  }
+
+  // THEME-DEPENDENT COLORING:
+  @each $theme-name in get-theme-names() {
+    &.#{$theme-name} {
+      .shape {
+        path {
+          fill: get-color($theme-name, "cloud");
+        }
+      }
+    }
+  }
+}

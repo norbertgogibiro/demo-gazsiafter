@@ -1,0 +1,41 @@
+@use "./themes" as *;
+
+@function get-theme-colors() {
+  $theme-colors: ();
+
+  @each $theme-name, $theme-export-data in $theme-exports {
+    $theme-colors: map-merge(
+      $theme-colors,
+      (
+        $theme-name: map-get($theme-export-data, "theme-colors"),
+      )
+    );
+  }
+
+  @return $theme-colors;
+}
+
+@function get-theme-names() {
+  @return map-keys($theme-exports);
+}
+
+@function get-grayscale-theme-names() {
+  $grayscale-theme-names: ();
+
+  @each $theme-name, $theme-export-data in $theme-exports {
+    @if map-get($theme-export-data, "is-grayscale") {
+      $grayscale-theme-names: append($grayscale-theme-names, $theme-name);
+    }
+  }
+
+  @return $grayscale-theme-names;
+}
+
+@function is-theme-grayscale($theme-name) {
+  @return map-has-key(get-grayscale-theme-names(), $theme-name);
+}
+
+@function get-color($theme-name, $color-key) {
+  $theme-colors: map-get(get-theme-colors(), $theme-name);
+  @return map-get($theme-colors, $color-key);
+}
